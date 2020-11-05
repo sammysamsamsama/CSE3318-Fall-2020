@@ -2,7 +2,11 @@
 // ID: 1001496565
 //
 // High-level description:
-//
+//    This program will compute subset sums for all possible cardinalities
+//    of the input.
+//    Take 2 ints, length of input and target value, then read input ints.
+//    Calculate all possible subset sums and output the table and traceback
+//    for each cardinality.
 //
 // compiled using this command: gcc lab3fall20.c -o lab3fall20
 
@@ -10,6 +14,11 @@
 #include <stdlib.h>
 
 // subset sum function from http://ranger.uta.edu/~weems/NOTES3318/subsetSum.c
+// fills out DP table for subset sums
+// inputs: int n = input length
+//         int m = target value
+//         int *S = input set
+//         int *C = table to fill out
 void subsetSum(int n, int m, int *S, int *C) {
    int i, j, potentialSum, cardinality, leftover;
 
@@ -37,6 +46,11 @@ void subsetSum(int n, int m, int *S, int *C) {
 }
 
 // write output function from http://ranger.uta.edu/~weems/NOTES3318/subsetSum.c
+// function to output DP table and traceback for subset sums
+// inputs: int n = input length
+//         int m = target value
+//         int *S = input set
+//         int *C = DP table
 void writeOutput(int n, int m, int *S, int *C) {
    int i, cardinality, j;
 
@@ -58,6 +72,9 @@ void writeOutput(int n, int m, int *S, int *C) {
 
    // Output the backtrace
    for (cardinality = 1; cardinality <= n; cardinality++) {
+      // check C[cardinality][m] < n + 1
+      // if >= n + 1, no solution
+      // else print traceback
       if (*(C + (m + 1) * (cardinality + 1) - 1) == n + 1) {
          printf("No solution with %d elements\n", cardinality);
       } else {
@@ -71,15 +88,6 @@ void writeOutput(int n, int m, int *S, int *C) {
          }
       }
    }
-   // if (C[m]==n+1) {
-   //    printf("No solution\n");
-   // } else {
-   //    printf("Solution\n");
-   //    printf("  i   S\n");
-   //    printf("-------\n");
-   //    for (i=m;i>0;i-=S[C[i]])
-   //       printf("%3d %3d\n",C[i],S[C[i]]);
-   // }
 }
 
 int main() {
