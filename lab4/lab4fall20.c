@@ -7,7 +7,7 @@
 //    Input: n and k, 1 <= k <= n <= 10000000,
 //    n ints in the indicated range, one per line. Duplicate inputs possible.
 //
-// compiled using this command: gcc lab3fall20.c -o lab3fall20
+// compiled using this command: gcc lab4fall20.c -o lab4fall20
 
 #include <stdio.h>
 #include <stdlib.h>
